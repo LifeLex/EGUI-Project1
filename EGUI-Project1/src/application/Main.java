@@ -1,11 +1,19 @@
 package application;
 	
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -35,10 +43,26 @@ public class Main extends Application {
 			
 			//
 			//MID
-			TextArea textArea= new TextArea();
-			VBox mid_box= new VBox(80);
-			mid_box.getChildren().add(textArea);
+			TableView table = new TableView();
+			
+			
+			TableColumn DueDate = new TableColumn("Due Date");
+			DueDate.setMinWidth(100);
+			TableColumn Title = new TableColumn("Title");
+			Title.setMinWidth(100);
+			TableColumn Complete = new TableColumn("% Complete");
+			Complete.setMinWidth(100);
+			TableColumn Description = new TableColumn("Description");
+			Description.setMinWidth(100);
+			
+			table.getColumns().addAll(DueDate, Title, Complete, Description);
+			VBox mid_box= new VBox(10);
+			Button read= new Button("Read");
+			
+			mid_box.getChildren().addAll(read,table);
 			root.setCenter(mid_box);
+		
+			
 			
 			//
 			
@@ -51,8 +75,11 @@ public class Main extends Application {
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
+			
 		}
 	}
+	
+	
 	
 	public static void main(String[] args) {
 		launch(args);
